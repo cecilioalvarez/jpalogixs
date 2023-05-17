@@ -49,4 +49,11 @@ public class User {
         this.lastName = lastName;
         this.email = email;
     }
+
+    public User(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public User() {
+    }
 }

@@ -25,7 +25,7 @@ public final class App {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("logixs");
         EntityManager em = emf.createEntityManager();
-        User user = new User("2A", "pepito", "gomez", "pepito@gmail.com");
+        User user = new User ("pepito", "gomez", "pepito@gmail.com");
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.persist(user);

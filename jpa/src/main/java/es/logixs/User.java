@@ -1,22 +1,26 @@
 package es.logixs;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class User {
     @Id
-    private String objectId;
+    @Type(type="uuid-char")
+    private UUID objectId;
     private String name;
     private String lastName;
     private String email;
 
-    public String getObjectId() {
+    public UUID getObjectId() {
         return objectId;
     }
 
-    public void setObjectId(String objectId) {
+    public void setObjectId(UUID objectId) {
         this.objectId = objectId;
     }
 
@@ -44,14 +48,14 @@ public class User {
         this.email = email;
     }
 
-    public User(String objectId, String name, String lastName, String email) {
-        this.objectId = objectId;
+    public User( String name, String lastName, String email) {
+        this.objectId = UUID.randomUUID();;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public User(String objectId) {
+    public User(UUID objectId) {
         this.objectId = objectId;
     }
 

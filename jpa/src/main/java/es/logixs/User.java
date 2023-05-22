@@ -4,6 +4,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -15,6 +17,19 @@ public class User {
     private String name;
     private String lastName;
     private String email;
+   @ManyToOne
+   @JoinColumn(name="company_objectid")
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+
 
     public UUID getObjectId() {
         return objectId;

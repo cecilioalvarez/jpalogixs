@@ -10,13 +10,19 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@NamedQuery(name="Company.findAll",query="select c from Company c")
+@NamedQueries({
+@NamedQuery(name="Company.findAll",query="select c from Company c"),
+@NamedQuery(name="Company.findAllOrderByState",query="select c from Company c order by state"),
+    @NamedQuery(name="Company.findAllByName",query="select c from Company c where c.name= :name")
+})
 public class Company {
 
 
     @Id
     @Type(type="uuid-char")
     private UUID objectId;
+
+    private String name;
     private String code;
     private String state;
     private String licenseId;
@@ -28,7 +34,13 @@ public class Company {
     @OneToMany(mappedBy="company" )
     private List<User> users= new ArrayList<User>();
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<User> getUsers() {
         return users;

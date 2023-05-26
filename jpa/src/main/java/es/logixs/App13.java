@@ -1,18 +1,17 @@
 package es.logixs;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.UUID;
 
-public class App11 {
+public class App13 {
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("logixs");
 
         CompanyRepository repo= new CompanyRepository(emf.createEntityManager());
-        List<Company> list = repo.findAllOrderByState();
+        List<Company> list = repo.findAllByName("name1");
 
         //n+1 queries
         for (Company c : list) {

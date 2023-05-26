@@ -2,10 +2,7 @@ package es.logixs;
 
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,7 +15,8 @@ public class User {
     private String lastName;
     private String email;
    @ManyToOne
-   @JoinColumn(name="company_objectid")
+
+   @JoinColumn(name="companyId")
     private Company company;
 
     public Company getCompany() {

@@ -1,5 +1,7 @@
 package es.logixs;
 
+
+
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@NamedQuery(name="Company.findAll",query="select c from Company c")
 public class Company {
 
 
@@ -23,16 +26,16 @@ public class Company {
     }
     //oye la relacion onetomany es una relacion que se base en la de company que es la manytoone
     @OneToMany(mappedBy="company" )
-    private List<User> userList= new ArrayList<User>();
+    private List<User> users= new ArrayList<User>();
 
 
 
-    public List<User> getUserList() {
-        return userList;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUsers(List<User> userList) {
+        this.users = userList;
     }
 
     public void setObjectId(UUID objectId) {

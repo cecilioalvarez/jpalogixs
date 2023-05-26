@@ -6,15 +6,13 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class App9 {
+public class App11 {
     public static void main(String[] args) {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("logixs");
-        EntityManager em = emf.createEntityManager();
 
-        TypedQuery<Company> query = em.createQuery("select c from Company c  join  fetch c.users u ", Company.class);
-
-        List<Company> list = query.getResultList();
+        CompanyRepository repo= new CompanyRepository(emf.createEntityManager());
+        List<Company> list = repo.findAll();
 
         //n+1 queries
         for (Company c : list) {
@@ -22,15 +20,16 @@ public class App9 {
             System.out.println(c.getObjectId());
             System.out.println(c.getLimitUsers());
 
+            /*
 
             for (User u : c.getUsers()) {
 
                 System.out.println(u.getName());
             }
             System.out.println("***********************");
-
+            */
         }
-        em.close();
+
 
     }
 }
